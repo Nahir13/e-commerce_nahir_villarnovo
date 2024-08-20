@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    font-family: "DM Serif Text", serif;
+    background: url(https://images7.alphacoders.com/109/thumb-1920-1092062.jpg) no-repeat fixed center;
+}
+.foto{
+    width: 88%;
+}
+.foto1{
+    width: 100%;
+}
+.foto3{
+    width: 70%;
+}
+.portada{
+    width: 62px;
+    height: 60px;
+}
+.letra{
+    color: #2f8f19;
+    font-family: "Edu VIC WA NT Beginner", cursive;
+}
