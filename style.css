@@ -1,17 +1,22 @@
-body{
-    margin: 0;
-    font-family: "DM Serif Text", serif;
-    background: url(https://wallpapercave.com/wp/wp12128326.jpg) no-repeat fixed center;
+body {
+  margin: 0;
+  font-family: "DM Serif Text", serif;
+  background: url(https://wallpapercave.com/wp/wp12128326.jpg) no-repeat fixed
+    center;
 }
-.portada{
-    width: 45px;
-    height: 45px;
+.portada {
+  width: 45px;
+  height: 45px;
 }
-.foto{
-    width: 85%;
+.foto {
+  width: 85%;
 }
-.imagen{
-    margin: 7%;
-    justify-content: center;
-    text-align: center;
+.imagen {
+  margin: 7%;
+  justify-content: center;
+  text-align: center;
+}
+.producto {
+  text-align: center;
+  font-size: 15px;
 }
