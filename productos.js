@@ -12,10 +12,10 @@ const data = [
   },
   {
     id: 2,
-    title: "Ferrari F8 Tributo",
+    title: "Ferrari Vision GT",
     detail:
       "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
-    img: "https://wallpaperaccess.com/full/3523863.jpg",
+    img: "https://cdn.autopapo.com.br/box/uploads/2022/11/28132510/ferrari-vision-gt-prata-frente-parado.jpg",
     price: 250_000,
     stock: 8,
   },
@@ -30,7 +30,7 @@ const data = [
   },
   {
     id: 4,
-    title: "Ferrari F8 Tributo",
+    title: "Ferrari 458 Italia",
     detail:
       "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
     img: "http://3.bp.blogspot.com/-BUnCk6UPasI/T9LvYQGDBlI/AAAAAAAABIM/avIzt2gpYHY/s1600/f1.jpg",
@@ -39,7 +39,7 @@ const data = [
   },
   {
     id: 5,
-    title: "Ferrari F8 Tributo",
+    title: "Ferrari F430 2007",
     detail:
       "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
     img: "http://noticias.coches.com/wp-content/uploads/2014/07/ferrari_f430-scuderia-2007_r26.jpg",
@@ -57,7 +57,7 @@ const data = [
   },
   {
     id: 7,
-    title: "Ferrari F8 Tributo",
+    title: "Ferrari 250 GTO 1962",
     detail:
       "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
     img: "https://media.revistagq.com/photos/655609fa4aab4dd59aa03aee/16:9/w_1280,c_limit/https___hypebeast.com_image_2023_11_RM-Sothebys-Sells-1962-Ferrari-for-51.7-Million-USD-2.jpg",
@@ -86,7 +86,7 @@ const data = [
 
 const productos = data.map(
   (producto) =>
-    `<div class="card d-flex align-items-center m-2 flex-column" style="width: 18rem">
+    `<div class="card d-flex align-items-center flex-column m-2" style="width: 18rem">
        <h1 class="text-center">${producto.title}</h1>
        <img class="imagen" src= "${producto.img}" alt="Imagen" width="55%">
        <p class="text-center">${producto.detail}</p>

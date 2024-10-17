@@ -17,14 +17,26 @@
 </head>
 
 <body>
-    <header></header>
-    <h1 class="text-warning text-center"></h1>
-    <section class="container d-flex flex-wrap justify-content-center"></section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </header>
+    <header>
+        <div>
+            <input type="text" id="search-input" placeholder="Buscar por marca">
+            <button id="search">Buscar</button>
+            <button id="reset">Borrar</button>
+        </div>
+        <h1 class="text-warning text-center"></h1>
+        <div id="category-buttons">
+            <button class="category-btn" data-category="todos">Ver todos</button>
+            <button class="category-btn" data-category="mclaren">McLaren</button>
+            <button class="category-btn" data-category="mercedes">Mercedes</button>
+            <button class="category-btn" data-category="ferrari">Ferrari</button>
+        </div>
+        <section class="container d-flex flex-wrap justify-content-center"></section>
+        <ul id="result-list"></ul>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
-    <script src="index.js"></script>
-    <script src="navbar.js"></script>
+        <script src="index.js"></script>
 </body>
 
 </html>
