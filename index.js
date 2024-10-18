@@ -131,6 +131,7 @@ const resetInput = () => {
   renderCards(data);
 };
 
+
 const filterByCategory = (category) => {
   const filteredData = category === "todos"?data: data.filter(producto => producto.category === category);
   renderCards(filteredData);
@@ -144,3 +145,5 @@ categoryButtons.forEach(button => {
   button.addEventListener("click", () =>
   filterByCategory(button.dataset.category));
 });
+
+

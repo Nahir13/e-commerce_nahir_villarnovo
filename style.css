@@ -20,3 +20,13 @@ body {
   text-align: center;
   font-size: 15px;
 }
+.hovnav{
+  color: black;
+  :hover{
+    border: #EB8317 2px;
+    color: #EB8317;
+  }
+}
+.colo{
+  background: linear-gradient(to right, #050505, #8e8669, #ab8115);
+}
