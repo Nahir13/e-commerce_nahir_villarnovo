@@ -1,19 +1,19 @@
 const data = [{
   id: 1,
-  title: "McLaren 650S",
+  title: "McLaren Senna GTR",
   detail:
     "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
-  img: "https://upload.wikimedia.org/wikipedia/commons/2/26/2015_McLaren_650S_GT3_(19443180443).jpg",
+  img: "https://www.carscoops.com/wp-content/uploads/2020/09/McLaren-Senna-GTR-LM-2.jpg",
   price: 250_000,
   stock: 8,
   category: "mclaren",
 },
 {
   id: 2,
-  title: "McLaren MSO 720S",
+  title: "McLaren P1 News",
   detail:
     "Con su motor V8 biturbo y su diseño aerodinámico, la F8 Tributo es una verdadera joya de la ingeniería automotriz.",
-  img: "https://tse2.mm.bing.net/th?id=OIP.4qKm2lVvigBwC_BNXjUcEwHaEK&pid=Api&P=0&h=180",
+  img: "https://cdn.motor1.com/images/mgl/vOwEq/s1/mclaren-p1-2017.jpg",
   price: 250_000,
   stock: 8,
   category: "mclaren",
@@ -96,13 +96,13 @@ function renderCards(cards) {
 
   const container = document.querySelector("section");
 
-  const cardHTML = cards.map((producto) => `<div class="card d-flex align-items-center flex-column m-2" style="width: 18rem">
+  const cardHTML = cards.map((producto) => `<div class="card text-bg-dark d-flex align-items-center flex-column m-2" style="width: 18rem">
              <img class="imagen" src= "${producto.img}" alt=Imagen ${producto.id} width=55% >
                       <h5>${producto.title}</h5>
                       <p class="text-center">${producto.detail}</p>
                      <p>${producto.price}</p>
                      <p>${producto.stock}</p>
-                    <a href="productos.html?prod=${producto.id}" class="btn btn-primary">Ver más</a>
+                    <a href="productos.html?prod=${producto.id}" class="btn btn-danger hovnav boton">Ver más</a>
              </div>
         `).join("");
   container.innerHTML = cardHTML;

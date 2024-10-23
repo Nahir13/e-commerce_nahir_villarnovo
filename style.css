@@ -14,7 +14,7 @@ body {
 .imagen {
   margin: 7%;
   justify-content: center;
-  text-align: center;
+  overflow: hidden;
 }
 .producto {
   text-align: center;
@@ -23,10 +23,23 @@ body {
 .hovnav{
   color: black;
   :hover{
-    border: #EB8317 2px;
-    color: #EB8317;
+    border: #ab2415 2px;
+    color: #ab2415;
   }
 }
 .colo{
-  background: linear-gradient(to right, #050505, #8e8669, #ab8115);
+  background: linear-gradient(to right, #8e8669, #ab2415);
+}
+.boton{
+  margin: 3%;
+  overflow: hidden;
+}
+main {
+  display: flex; 
+  overflow: hidden;
+  padding: 20px; 
+}
+
+.card {
+  margin: 10px;
 }
