@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "DM Serif Text", serif;
+  font-family: "Yatra One", system-ui;
   background: url(https://wallpapercave.com/wp/wp12128326.jpg) no-repeat fixed
     center;
 }
@@ -42,4 +42,7 @@ main {
 
 .card {
   margin: 10px;
+}
+#login{
+background: url(https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2020%2F0629%2Fr713850_1296x729_16-9.jpg) no-repeat fixed center;
 }

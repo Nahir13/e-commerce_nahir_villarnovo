@@ -48,7 +48,15 @@ header.innerHTML = `
             <button class="btn btn-outline-danger" type="button" id="search">Buscar</button>
             <button class="btn btn-outline-danger" type="button" id="reset">Borrar</button>
         </form>
-    </div>
-  </nav>
-`;
+        <ul>
+        ${localStorage.getItem("email")
+    ? `<li class="text-white">Bienvenido, ${localStorage.getItem("email", "password")}</li><span></span> <button class="btn btn-outline-danger" onclick="cerrarSesion()">Cerrar Sesion</button>` : `<a href="./login.html" class="btn btn-outline-danger" type="button">Cerrar sesión</a>`
+    }</ul >
+    </div >
+  </nav >
+  `;
 
+function cerrarSesion() {
+  localStorage.clear()
+  location.href = "./login.html"
+}
