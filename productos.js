@@ -90,6 +90,7 @@ const data = [{
 },];
 
 const autos = document.querySelector("main");
+let cart = [];
 
 const productos = data.map(
   (producto) =>
@@ -99,14 +100,13 @@ const productos = data.map(
                       <p class="text-center">${producto.detail}</p>
                      <p>${producto.price}</p>
                      <p>${producto.stock}</p>
-                    <a href="productos.html?prod=${producto.id}" class="btn btn-danger hovnav boton">Ver más</a>
             
              ${localStorage.getItem("email") ?
       `<div class="input-group">
-              <button class="btn btn-outline-secondary" type="button">+</button>
-              <input type="text" class="form-control" placeholder="0"></input>
-              <button class="btn btn-outline-secondary" type="button">-</button>
-      <a href="carrito.html" class="enlace"><button type="button" class="btn btn-danger hovnav boton">Comprar</a>
+              <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
+              <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split('')[1])}" onchange="updateQuantity(${producto.id})"></input>
+              <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>
+      <a href="carrito.html" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</a>
 
               </div>`
       :
@@ -114,5 +114,31 @@ const productos = data.map(
     } 
 </div>`
 );
-
 autos.innerHTML = productos.join("");
+
+const counter = document.querySelector("#producto .input-group input")
+
+//Funcion para incrementar
+function increaseItem(id) {
+  counter.value = Number(counter.value) + 1
+};
+
+function addItems() {
+
+  const cart = JSON.parse(localStorage.getItem("cart"))
+
+  const idProduct = Number(window.location.search.split("=")[1])
+
+  cart.push({ id: idProduct, quantity: counter.value })
+
+  localStorage.setItem("cart", JSON.stringify(cart))
+
+
+  let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
+
+  localStorage.setItem("quantity", quantity)
+  localStorage.setItem("quantity", quantity)
+  const quantityTag = document.querySelector("#quantity")
+
+  quantityTag.innerText = quantity
+};

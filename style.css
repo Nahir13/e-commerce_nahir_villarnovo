@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Yatra One", system-ui;
+  font-family: 'Yatra One', system-ui;
   background: url(https://wallpapercave.com/wp/wp12128326.jpg) no-repeat fixed
     center;
 }
@@ -20,33 +20,37 @@ body {
   text-align: center;
   font-size: 15px;
 }
-.hovnav{
+.hovnav {
   color: black;
-  :hover{
+  :hover {
     border: #ab2415 2px;
     color: #ab2415;
   }
 }
-.colo{
+.colo {
   background: linear-gradient(to right, #8e8669, #ab2415);
 }
-.boton{
+.boton {
   margin: 3%;
   overflow: hidden;
 }
 main {
-  display: flex; 
+  display: flex;
   overflow: hidden;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .card {
   margin: 10px;
 }
-#login{
-background: url(https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2020%2F0629%2Fr713850_1296x729_16-9.jpg) no-repeat fixed center;
+#login {
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  background: url(https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2020%2F0629%2Fr713850_1296x729_16-9.jpg)
+    no-repeat fixed center;
 }
-.enlace{
+.enlace {
   text-decoration: none;
   color: black;
 }
