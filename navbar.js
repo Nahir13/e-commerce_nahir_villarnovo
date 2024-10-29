@@ -58,5 +58,5 @@ header.innerHTML = `
 
 function cerrarSesion() {
   localStorage.clear()
-  location.href = "./login.html"
+  location.href = "./index.html"
 }
