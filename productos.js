@@ -94,8 +94,8 @@ const cart = JSON.parse(localStorage.getItem("cart"))|| [];
 
 const productos = data.map(
   (producto) =>
-    `<div class="card text-bg-dark d-flex align-items-center flex-column m-2" style="width: 18rem">
-             <img class="imagen" src= "${producto.img}" alt=Imagen ${producto.id} width=55% >
+    `<div class="card text-bg-dark d-flex flex-column align-items-center m-2" style="width: 18rem">
+             <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=55% >
                       <h5>${producto.title}</h5>
                       <p class="text-center">${producto.detail}</p>
                      <p>${producto.price}</p>
@@ -104,9 +104,9 @@ const productos = data.map(
              ${localStorage.getItem("email") ?
       `<div class="input-group">
               <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
-              <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split('')[1])}" onchange="updateQuantity(${producto.id})"></input>
+              <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
               <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>
-      <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</a>
+      <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</button>
 
               </div>`
       :
@@ -152,6 +152,7 @@ if (existingProduct){
 
 localStorage.setItem("cart", JSON.stringify(cart));
 updateCartQuantity();
+}
 
 function updateCartQuantity(){
   let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
@@ -162,7 +163,6 @@ if(quantityTag){
 
 }
 
-}
 
   
 };

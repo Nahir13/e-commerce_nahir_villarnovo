@@ -1,20 +1,13 @@
 body {
   margin: 0;
-  font-family: 'Yatra One', system-ui;
+  font-family: "Poppins", sans-serif;
   background: url(https://wallpapercave.com/wp/wp12128326.jpg) no-repeat fixed
     center;
-}
-.portada {
-  width: 45px;
-  height: 45px;
-}
-.foto {
-  width: 85%;
 }
 .imagen {
   margin: 7%;
   justify-content: center;
-  overflow: hidden;
+  width: 80%;
 }
 .producto {
   text-align: center;
@@ -34,12 +27,6 @@ body {
   margin: 3%;
   overflow: hidden;
 }
-main {
-  display: flex;
-  overflow: hidden;
-  padding: 20px;
-}
-
 .card {
   margin: 10px;
 }
