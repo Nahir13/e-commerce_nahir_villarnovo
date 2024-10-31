@@ -45,14 +45,14 @@ header.innerHTML = `
       </div>
        <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar" id="search-input">
-            <button class="btn btn-outline-danger" type="button" id="search">Buscar</button>
-            <button class="btn btn-outline-danger" type="button" id="reset">Borrar</button>
+            <button class="btn btn-outline-danger" type="button" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-outline-danger" type="button" id="reset"><i class="fa-solid fa-x"></i></button>
         </form>
         <ul>
         ${localStorage.getItem("email")
     ? `<li class="text-white">Hola, ${localStorage.getItem("email")}</li><span>|</span>
     <img height="25" src="https://github.com/julioavantt/guayerd_login/blob/main/cart.png?raw=true"/>
-    <b id="quantity">${localStorage.getItem("quantity") || 0}</b> <button class="btn btn-outline-danger" onclick="cerrarSesion()">Cerrar Sesion</button>` : `<a href="./login.html" class="btn btn-outline-danger" type="button">Iniciar sesión</a>`
+    <b id="quantity">${localStorage.getItem("quantity") || 0}</b> <button class="btn btn-outline-danger ms-4" onclick="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></button>` : `<a href="./login.html" class="btn btn-outline-danger mt-3" type="button">Iniciar sesión</a>`
   }</ul >
     </div >
   </nav >

@@ -102,7 +102,7 @@ const productos = data.map(
                      <p>${producto.stock}</p>
             
              ${localStorage.getItem("email") ?
-      `<div class="input-group">
+      `<div class="d-flex flex-column align-items-center col-3">
               <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
               <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
               <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>

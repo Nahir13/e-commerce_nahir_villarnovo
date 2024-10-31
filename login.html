@@ -22,12 +22,14 @@
                 <label class="form-label">Password</label>
                 <input type="password" id="password" name="password" class="form-control" />
             </div>
-            <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+            <p id="formLoginMessage"></p>
+            <button type="submit" class="btn btn-danger mx-5 my-3">Iniciar Sesion</button>
         </form>
     </div>
 
     <script>
         let form = document.querySelector("form");
+        const message = document.querySelector("#formLoginMessage")
 
         const correctEmail = 'usuario@gmail.com'
         const correctPassword = '1301'
@@ -41,7 +43,7 @@
                 window.location.href = "./index.html"
             }
             else {
-                alert('Usuario o Contraseña incorrectos');
+                message.innerText = "Usuario o Contraseña incorrectos";
             }
         };
         form.addEventListener("submit", validarFormulario);
