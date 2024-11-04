@@ -94,25 +94,25 @@ const cart = JSON.parse(localStorage.getItem("cart"))|| [];
 
 const productos = data.map(
   (producto) =>
-    `<div class="card text-bg-dark d-flex flex-column align-items-center m-2" style="width: 18rem">
+  `<div class="card mb-3">
+  <div class="card text-bg-dark text-center" style="width: 18rem">
              <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=55% >
-                      <h5>${producto.title}</h5>
-                      <p class="text-center">${producto.detail}</p>
-                     <p>${producto.price}</p>
-                     <p>${producto.stock}</p>
-            
-             ${localStorage.getItem("email") ?
-      `<div class="d-flex flex-column align-items-center col-3">
-              <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
-              <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
-              <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>
-      <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</button>
-
-              </div>`
+              <h5>${producto.title}</h5>
+              <p class="text-center">${producto.detail}</p>
+              <p>${producto.price}</p>
+              <p>${producto.stock}</p>
+    ${localStorage.getItem("email") ?
+      `<div class="input-group">
+          <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
+          <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
+          <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>
+          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</button>
+        </div>`
       :
       `<a href="login.html" class="enlace"><button type="button" class="btn btn-danger hovnav boton">Iniciar Sesión</a>`
     } 
-</div>`
+    </div>
+    </div>`
 );
 autos.innerHTML = productos.join("");
 
@@ -162,8 +162,5 @@ if(quantityTag){
   quantityTag.innerText = quantity
 
 }
-
-
-  
 };
 updateCartQuantity();
