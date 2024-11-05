@@ -1,4 +1,4 @@
- const cardsSection = document.querySelector("#cards")
+ const cardsSection = document.querySelector("#cards", "#cart")
 
 function getCart(cards) {
     const list = cards.map(card =>
@@ -6,15 +6,15 @@ function getCart(cards) {
          <div class="card-body">
         <div class="d-flex align-items-start">
             <div class="me-4">
-               <img src="${card.producto.img}" class="img-fluid rounded-start" alt="${card.producto.title}">
+               <img src="${card.img}" class="img-fluid rounded-start" alt="${card.title}">
                </div>
                 <div class="flex-grow-1 overflow-hidden">
-                   <h5 class="text-truncate font-size-18">${card.producto.title}</h5>
+                   <h5 class="text-truncate font-size-18">${card.title}</h5>
                    <div class="row">
                     <div class="col-md-3">
                     <div class="mt-3">
                     <p class="text-muted mb-2">Precio</p>
-                   <h5 class="mb-0 mt-2">$${card.producto.price}</h5>
+                   <h5 class="mb-0 mt-2">$${card.price}</h5>
                      </div>
                     </div>
                     <div class="col-md-4">
@@ -26,12 +26,12 @@ function getCart(cards) {
                    <div class="col-md-3">
                  <div class="mt-3">
                   <p class="text-muted mb-2">Total</p>
-                  <h5>$${card.producto.price * card.quantity}</h5>
+                  <h5>$${card.price * card.quantity}</h5>
                   </div>
                  </div>
                     <div class="col-md-2">
                    <div class="mt-3">
-                   <p class="text-muted mb-2" onclick="removeItem(${card.producto.id})">Eliminar</p>
+                   <p class="text-muted mb-2" onclick="removeItem(${card.id})">Eliminar</p>
                </div>
                    </div>
                   </div>
@@ -50,7 +50,7 @@ function getCart(cards) {
     let cartTotal = document.querySelector("#cart-total")
 
    let total = cards.reduce(
-       (acumulado, actual) => acumulado+ actual.product.price * actual.quantity,
+       (acumulado, actual) => acumulado + actual.card.price * actual.quantity,
       0
   )
     cartTotal.innerText = "$" + total
@@ -60,7 +60,7 @@ function getCart(cards) {
  function removeItem(id) {
      const cards = JSON.parse(localStorage.getItem("cart"))
 
-     const newCards = cards.filter(card => card.producto.id !== id);
+     const newCards = cards.filter(card => card.id !== id);
 
     localStorage.setItem("cart", JSON.stringify(newCards))
 
@@ -79,5 +79,5 @@ function getCart(cards) {
     quantityTag.innerText = "0"
     localStorage.setItem("cart", JSON.stringify([]))
      getCart([])
-   total(0)
+   total([])
  }
