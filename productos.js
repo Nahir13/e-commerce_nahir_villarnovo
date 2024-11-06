@@ -151,7 +151,6 @@ if (existingProduct){
 }
 
 localStorage.setItem("cart", JSON.stringify(cart));
-getCart(cart);
 updateCartQuantity();
 }
 

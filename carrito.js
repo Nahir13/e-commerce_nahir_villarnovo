@@ -31,7 +31,7 @@ function getCart(cards) {
                  </div>
                     <div class="col-md-2">
                    <div class="mt-3">
-                   <p class="text-muted mb-2" onclick="removeItem(${card.id})">Eliminar</p>
+                   <p class="text-muted mb-2" onclick="removeItem(${card.id})"><i class="fa-solid fa-trash"></i></p>
                </div>
                    </div>
                   </div>
@@ -39,6 +39,7 @@ function getCart(cards) {
                   </div>
                  </div>
                 </div>
+                
      `)
     cardsSection.innerHTML = list.join("")
  }
@@ -60,7 +61,7 @@ function getCart(cards) {
  function removeItem(id) {
      const cards = JSON.parse(localStorage.getItem("cart"))
 
-     const newCards = cards.filter(card => card.id !== id);
+     const newCards = cards.filter(card => card.id === id);
 
     localStorage.setItem("cart", JSON.stringify(newCards))
 

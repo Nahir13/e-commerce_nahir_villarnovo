@@ -51,7 +51,7 @@ header.innerHTML = `
         <ul>
         ${localStorage.getItem("email")
     ? `<li class="text-white">Hola, ${localStorage.getItem("email")}</li><span>|</span>
-    <a  href="carrito.html"><img height="25" src="https://github.com/julioavantt/guayerd_login/blob/main/cart.png?raw=true"/></a>
+    <a  href="carrito.html"><span class="material-symbols-outlined">shopping_cart</span></a>
     <b id="quantity">${localStorage.getItem("quantity") || 0}</b> <button class="btn btn-outline-danger ms-4" onclick="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></button>` : `<a href="./login.html" class="btn btn-outline-danger mt-3" type="button">Iniciar sesión</a>`
   }</ul >
     </div >
