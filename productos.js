@@ -150,6 +150,20 @@ if (existingProduct){
   cart.push ({...producto, quantity: cantidad});
 }
 
+Swal.fire({
+  text: '¿Está seguro de agregar el producto al carrito?',
+  confirmButtonText: 'Si',
+  cancelButtonText: 'No',
+  showCancelButton: true,
+  showCloseButton: true,
+  confirmButtonColor: '#ab2415',
+  cancelButtonColor: '#24262b',
+}).then(result => {
+  if(result.isConfirmed){
+    add()
+  }
+})
+
 localStorage.setItem("cart", JSON.stringify(cart));
 updateCartQuantity();
 }
