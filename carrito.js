@@ -61,7 +61,7 @@ function getCart(cards) {
  function removeItem(id) {
      const cards = JSON.parse(localStorage.getItem("cart"))
 
-     const newCards = cards.filter(card => card.id === id);
+     const newCards = cards.filter(card => card.id !== id);
 
     localStorage.setItem("cart", JSON.stringify(newCards))
 

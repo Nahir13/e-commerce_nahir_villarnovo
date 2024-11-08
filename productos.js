@@ -90,91 +90,137 @@ const data = [{
 },];
 
 const autos = document.querySelector("main");
-const cart = JSON.parse(localStorage.getItem("cart"))|| [];
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const productos = data.map(
-  (producto) =>
-  `<div class="card mb-3">
-  <div class="card text-bg-dark text-center" style="width: 18rem">
-             <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=55% >
-              <h5>${producto.title}</h5>
-              <p class="text-center">${producto.detail}</p>
-              <p>${producto.price}</p>
-              <p>${producto.stock}</p>
+/*const productos = data.map((producto) =>
+    `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=100% >
+        </div>
+        <div class="col-md-6 text-center align-items-center">
+          <div class="card-body">
+            <h5 class="card-title">${producto.title}</h5>
+            <p class="card-text">${producto.detail}</p>
+            <p class="card-text">Precio: ${producto.price}</p>
+            <p class="card-text">${producto.stock}</p>
+          </div>
+        </div>
     ${localStorage.getItem("email") ?
       `<div class="input-group">
-          <button class="btn btn-outline-secondary" type="button" onclick="increaseItem(${producto.id})">+</button>
+          <button class="btn btn-outline-secondary mr-3" type="button" onclick="increaseItem(${producto.id})">+</button>
           <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
-          <button class="btn btn-outline-secondary" type="button" onclick="decreaseItem(${producto.id})">-</button>
-          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton" onclick="addItems(${producto.id})">Agregar al Carrito</button>
+          <button class="btn btn-outline-secondary ml-3" type="button" onclick="decreaseItem(${producto.id})">-</button>
+          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton mx-2" onclick="addItems(${producto.id})">Agregar al Carrito</button></a>
         </div>`
       :
-      `<a href="login.html" class="enlace"><button type="button" class="btn btn-danger hovnav boton">Iniciar Sesión</a>`
+      `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
     } 
     </div>
     </div>`
 );
-autos.innerHTML = productos.join("");
+autos.innerHTML = productos.join("");*/
+
+//Prueba de muestra de id
+function setProductId(id){
+  localStorage.setItem("selectedProductId", id)
+}
+
+const selectedProductId = localStorage.getItem("selectedProductId")
+
+const productos = data.find(p => p.id === selectedProductId)
+
+if (producto) {
+  `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=100% >
+        </div>
+        <div class="col-md-6 text-center align-items-center">
+          <div class="card-body">
+            <h5 class="card-title">${producto.title}</h5>
+            <p class="card-text">${producto.detail}</p>
+            <p class="card-text">Precio: ${producto.price}</p>
+            <p class="card-text">${producto.stock}</p>
+          </div>
+        </div>
+    ${localStorage.getItem("email") ?
+      `<div class="input-group">
+          <button class="btn btn-outline-secondary mr-3" type="button" onclick="increaseItem(${producto.id})">+</button>
+          <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
+          <button class="btn btn-outline-secondary ml-3" type="button" onclick="decreaseItem(${producto.id})">-</button>
+          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton mx-2" onclick="addItems(${producto.id})">Agregar al Carrito</button></a>
+        </div>`
+      :
+      `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
+    } 
+    </div>
+    </div>`
+  document.getElementById('product-detail').innerHTML = detail.HTML;
+
+} else {
+  document.getElementById('product-detail').innerHTML = `<p>Producto no encontrado</p>`
+}
 
 //Funcion para incrementar
 function increaseItem(id) {
-const input = document.getElementById(`cantidad-${id}`);
-const maxStock = parseInt(data.find(p => p.id === id).stock.split(': ')[1]);
+  const input = document.getElementById(`cantidad-${id}`);
+  const maxStock = parseInt(data.find(p => p.id === id).stock.split(': ')[1]);
 
-if (input.value < maxStock) {
-  input.value = parseInt(input.value) + 1;
-}
+  if (input.value < maxStock) {
+    input.value = parseInt(input.value) + 1;
+  }
 };
 
-function decreaseItem(id){
-const input = document.getElementById(`cantidad-${id}`);
+function decreaseItem(id) {
+  const input = document.getElementById(`cantidad-${id}`);
 
-if (input.value > 1) {
-  input.value = parseInt(input.value) - 1;
-}
+  if (input.value > 1) {
+    input.value = parseInt(input.value) - 1;
+  }
 }
 function addItems(id) {
 
 
   const input = document.getElementById(`cantidad-${id}`);
   const cantidad = parseInt(input.value);
-const producto = data.find(p => p.id === id);
+  const producto = data.find(p => p.id === id);
 
-if (cantidad < 1) return;
+  if (cantidad < 1) return;
 
-const existingProduct = cart.find(item => item.id === id);
+  const existingProduct = cart.find(item => item.id === id);
 
-if (existingProduct){
-  existingProduct.quantity += cantidad;
-} else {
-  cart.push ({...producto, quantity: cantidad});
-}
-
-Swal.fire({
-  text: '¿Está seguro de agregar el producto al carrito?',
-  confirmButtonText: 'Si',
-  cancelButtonText: 'No',
-  showCancelButton: true,
-  showCloseButton: true,
-  confirmButtonColor: '#ab2415',
-  cancelButtonColor: '#24262b',
-}).then(result => {
-  if(result.isConfirmed){
-    add()
+  if (existingProduct) {
+    existingProduct.quantity += cantidad;
+  } else {
+    cart.push({ ...producto, quantity: cantidad });
   }
-})
 
-localStorage.setItem("cart", JSON.stringify(cart));
-updateCartQuantity();
+  Swal.fire({
+    text: '¿Está seguro de agregar el producto al carrito?',
+    confirmButtonText: 'Si',
+    cancelButtonText: 'No',
+    showCancelButton: true,
+    showCloseButton: true,
+    confirmButtonColor: '#ab2415',
+    cancelButtonColor: '#24262b',
+  }).then(result => {
+    if (result.isConfirmed) {
+      add()
+    }
+  })
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartQuantity();
 }
 
-function updateCartQuantity(){
+function updateCartQuantity() {
   let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
   localStorage.setItem("quantity", quantity)
   const quantityTag = document.querySelector("#quantity")
-if(quantityTag){
-  quantityTag.innerText = quantity
+  if (quantityTag) {
+    quantityTag.innerText = quantity
 
-}
+  }
 };
 updateCartQuantity();

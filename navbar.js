@@ -1,7 +1,7 @@
 let barra = [
-  { text: "Inicio", href: "/index.html" },
-  { text: "Productos", href: "/productos.html" },
-  { text: "Contacto", href: "/contact" },
+  { text: "Inicio", href: "/index.html" , icon: "fas fa-home"},
+  { text: "Productos", href: "/productos.html", icon: "fa-solid fa-car-side"},
+  { text: "Contacto", href: "/contact", icon: "fas fa-phone" },
 ];
 
 const header = document.querySelector("header");
@@ -10,7 +10,9 @@ let menu = [];
 for (let info of barra) {
   const carta = `
     <li class="nav-item hovnav">
-      <a class="nav-link" href="${info.href}">${info.text}</a>
+      <a class="nav-link" href="${info.href}">
+      <i class="${info.icon}"></i>
+      </a>
     </li>
     
   `;
