@@ -92,7 +92,7 @@ const data = [{
 const autos = document.querySelector("main");
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/*const productos = data.map((producto) =>
+const productos = data.map((producto) =>
     `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
       <div class="row g-0">
         <div class="col-md-6">
@@ -119,48 +119,7 @@ const cart = JSON.parse(localStorage.getItem("cart")) || [];
     </div>
     </div>`
 );
-autos.innerHTML = productos.join("");*/
-
-//Prueba de muestra de id
-function setProductId(id){
-  localStorage.setItem("selectedProductId", id)
-}
-
-const selectedProductId = localStorage.getItem("selectedProductId")
-
-const productos = data.find(p => p.id === selectedProductId)
-
-if (producto) {
-  `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
-      <div class="row g-0">
-        <div class="col-md-6">
-          <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=100% >
-        </div>
-        <div class="col-md-6 text-center align-items-center">
-          <div class="card-body">
-            <h5 class="card-title">${producto.title}</h5>
-            <p class="card-text">${producto.detail}</p>
-            <p class="card-text">Precio: ${producto.price}</p>
-            <p class="card-text">${producto.stock}</p>
-          </div>
-        </div>
-    ${localStorage.getItem("email") ?
-      `<div class="input-group">
-          <button class="btn btn-outline-secondary mr-3" type="button" onclick="increaseItem(${producto.id})">+</button>
-          <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
-          <button class="btn btn-outline-secondary ml-3" type="button" onclick="decreaseItem(${producto.id})">-</button>
-          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton mx-2" onclick="addItems(${producto.id})">Agregar al Carrito</button></a>
-        </div>`
-      :
-      `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
-    } 
-    </div>
-    </div>`
-  document.getElementById('product-detail').innerHTML = detail.HTML;
-
-} else {
-  document.getElementById('product-detail').innerHTML = `<p>Producto no encontrado</p>`
-}
+autos.innerHTML = productos.join("");
 
 //Funcion para incrementar
 function increaseItem(id) {

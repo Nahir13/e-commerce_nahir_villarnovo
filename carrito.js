@@ -1,4 +1,4 @@
- const cardsSection = document.querySelector("#cards", "#cart")
+const cardsSection = document.querySelector("#cards", "#cart")
 
 function getCart(cards) {
     const list = cards.map(card =>
@@ -39,7 +39,7 @@ function getCart(cards) {
                   </div>
                  </div>
                 </div>
-                
+                  
      `)
     cardsSection.innerHTML = list.join("")
  }
@@ -51,7 +51,7 @@ function getCart(cards) {
     let cartTotal = document.querySelector("#cart-total")
 
    let total = cards.reduce(
-       (acumulado, actual) => acumulado + actual.card.price * actual.quantity,
+       (acumulado, actual) => acumulado + actual.price * actual.quantity,
       0
   )
     cartTotal.innerText = "$" + total
