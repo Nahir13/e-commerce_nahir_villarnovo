@@ -60,10 +60,10 @@ const data = [{
 },
 {
   id: 7,
-  title: "Ferrari 250 GTO 1962",
+  title: "Ferrari 488 GTB",
   detail:
-    "Es un automóvil deportivo y de competición construido por Ferrari entre los años 1962 y 1964; es considerado como uno de los mejores automóviles de alto rendimiento construido y actualmente (2021), el más caro del mundo.",
-  img: "https://media.revistagq.com/photos/655609fa4aab4dd59aa03aee/16:9/w_1280,c_limit/https___hypebeast.com_image_2023_11_RM-Sothebys-Sells-1962-Ferrari-for-51.7-Million-USD-2.jpg",
+    "El nombre 488 GTB marca el retorno a la denominación de los modelos Ferrari clásicos: el 488 indica el cubicaje unitario de cada cilindro, mientras las siglas GTB hacen referencia a Gran Turismo Berlinetta.",
+  img: "https://www.xtrafondos.com/wallpapers/ferrari-488-gtb-1192.jpg",
   price: 850_000,
   stock: "Stock: 2",
   category: "ferrari",
@@ -91,8 +91,8 @@ const data = [{
 
 const autos = document.querySelector("main");
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const productos = data.map((producto) =>
+function filtroCards(cards) {
+const productos = cards.map((producto) =>
     `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
       <div class="row g-0">
         <div class="col-md-6">
@@ -120,7 +120,12 @@ const productos = data.map((producto) =>
     </div>`
 );
 autos.innerHTML = productos.join("");
+}
+function sprint() {
+  filtroCards(data);
+};
 
+sprint();
 //Funcion para incrementar
 function increaseItem(id) {
   const input = document.getElementById(`cantidad-${id}`);
@@ -183,3 +188,38 @@ function updateCartQuantity() {
   }
 };
 updateCartQuantity();
+
+//FILTRO DE CATEGORIAS
+
+const buttonSearch = document.getElementById("search");
+const buttonReset = document.getElementById("reset");
+const input = document.getElementById("search-input");
+const ul = document.getElementById("result-list");
+const searchList = () => {
+  const filterData = data.filter((producto) => producto.title.toLowerCase().includes(input.value.toLowerCase()));
+  if (filterData.length > 0) {
+    filtroCards(filterData);
+  } else {
+    document.querySelector("section").innerHTML = "<p>No se encontraron resultados</p>";
+  }
+};
+
+const resetInput = () => {
+  input.value = "";
+  filtroCards(data);
+};
+
+
+const filterByCategory = (category) => {
+  const filteredData = category === "todos"?data: data.filter(producto => producto.category === category);
+  filtroCards(filteredData);
+};
+
+buttonSearch.addEventListener("click", searchList);
+buttonReset.addEventListener("click", resetInput);
+
+const categoryButtons = document.querySelectorAll(".category-btn");
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () =>
+  filterByCategory(button.dataset.category));
+});

@@ -60,10 +60,10 @@ const data = [{
 },
 {
   id: 7,
-  title: "Ferrari 250 GTO 1962",
+  title: "Ferrari 488 GTB",
   detail:
-    "Es un automóvil deportivo y de competición construido por Ferrari entre los años 1962 y 1964; es considerado como uno de los mejores automóviles de alto rendimiento construido y actualmente (2021), el más caro del mundo.",
-  img: "https://media.revistagq.com/photos/655609fa4aab4dd59aa03aee/16:9/w_1280,c_limit/https___hypebeast.com_image_2023_11_RM-Sothebys-Sells-1962-Ferrari-for-51.7-Million-USD-2.jpg",
+    "El nombre 488 GTB marca el retorno a la denominación de los modelos Ferrari clásicos: el 488 indica el cubicaje unitario de cada cilindro, mientras las siglas GTB hacen referencia a Gran Turismo Berlinetta.",
+  img: "https://www.xtrafondos.com/wallpapers/ferrari-488-gtb-1192.jpg",
   price: 850_000,
   stock: "Stock: 2",
   category: "ferrari",
@@ -90,7 +90,7 @@ const data = [{
 },];
 
 
-function renderCards(cards) {
+function filtroCards(cards) {
   const h1 = document.querySelector("h1");
   h1.innerText = "Productos";
 
@@ -108,7 +108,7 @@ function renderCards(cards) {
   container.innerHTML = cardHTML;
 };
 function sprint() {
-  renderCards(data);
+  filtroCards(data);
 };
 
 sprint();
@@ -120,7 +120,7 @@ const ul = document.getElementById("result-list");
 const searchList = () => {
   const filterData = data.filter((producto) => producto.title.toLowerCase().includes(input.value.toLowerCase()));
   if (filterData.length > 0) {
-    renderCards(filterData);
+    filtroCards(filterData);
   } else {
     document.querySelector("section").innerHTML = "<p>No se encontraron resultados</p>";
   }
@@ -128,13 +128,13 @@ const searchList = () => {
 
 const resetInput = () => {
   input.value = "";
-  renderCards(data);
+  filtroCards(data);
 };
 
 
 const filterByCategory = (category) => {
   const filteredData = category === "todos"?data: data.filter(producto => producto.category === category);
-  renderCards(filteredData);
+  filtroCards(filteredData);
 };
 
 buttonSearch.addEventListener("click", searchList);
@@ -145,5 +145,22 @@ categoryButtons.forEach(button => {
   button.addEventListener("click", () =>
   filterByCategory(button.dataset.category));
 });
+//SPINNER
+const spinnerContainer = document.getElementById('spinner-container')
+const contenidoContainer = document.getElementById('contenido')
+
+spinnerContainer.style.display = 'block';
 
 
+//PROMESAS
+const myPromise = new Promise ((resolve, reject) => {
+  setTimeout(() => {
+    resolve("ok")
+    }, 3000)
+  })
+myPromise.then(() => {
+  spinnerContainer.style.display ='none'
+  filtroCards(data); // Llamamos a filtroCards cuando la promesa se resuelve
+}).catch(error => {
+  console.log("Error:", error); // Manejo de errores en caso de que la promesa sea rechazada
+});
