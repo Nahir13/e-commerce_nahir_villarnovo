@@ -146,6 +146,8 @@ categoryButtons.forEach(button => {
   filterByCategory(button.dataset.category));
 });
 //SPINNER
+let cargaCompleta = false;
+
 const spinnerContainer = document.getElementById('spinner-container')
 const contenidoContainer = document.getElementById('contenido')
 
@@ -159,8 +161,10 @@ const myPromise = new Promise ((resolve, reject) => {
     }, 3000)
   })
 myPromise.then(() => {
+  cargaCompleta = true;
   spinnerContainer.style.display ='none'
   filtroCards(data); // Llamamos a filtroCards cuando la promesa se resuelve
 }).catch(error => {
+  cargaCompleta = true;
   console.log("Error:", error); // Manejo de errores en caso de que la promesa sea rechazada
 });
