@@ -1,8 +1,8 @@
 const cardsSection = document.querySelector("#cards", "#cart")
 
 function getCart(cards) {
-    const list = cards.map(card =>
-         `<div class="card border shadow-none mb-2">
+  const list = cards.map(card =>
+    `<div class="card border shadow-none mb-2">
          <div class="card-body">
         <div class="d-flex align-items-start">
             <div class="me-4">
@@ -41,44 +41,76 @@ function getCart(cards) {
                 </div>
                   
      `)
-    cardsSection.innerHTML = list.join("")
- }
+  cardsSection.innerHTML = list.join("")
+}
 
- getCart(JSON.parse(localStorage.getItem("cart")))
+getCart(JSON.parse(localStorage.getItem("cart")))
 
 
- function total(cards) {
-    let cartTotal = document.querySelector("#cart-total")
+function total(cards) {
+  let cartTotal = document.querySelector("#cart-total")
 
-   let total = cards.reduce(
-       (acumulado, actual) => acumulado + actual.price * actual.quantity,
-      0
+  let total = cards.reduce(
+    (acumulado, actual) => acumulado + actual.price * actual.quantity,
+    0
   )
-    cartTotal.innerText = "$" + total
- }
-  total(JSON.parse(localStorage.getItem("cart")))
+  cartTotal.innerText = "$" + total
+}
+total(JSON.parse(localStorage.getItem("cart")))
 
- function removeItem(id) {
-     const cards = JSON.parse(localStorage.getItem("cart"))
+function removeItem(id) {
+  const cards = JSON.parse(localStorage.getItem("cart"))
 
-     const newCards = cards.filter(card => card.id !== id);
+  const newCards = cards.filter(card => card.id !== id);
 
-    localStorage.setItem("cart", JSON.stringify(newCards))
+  localStorage.setItem("cart", JSON.stringify(newCards))
 
-    getCart(newCards)
+  getCart(newCards)
 
-    total(newCards)
+  total(newCards)
 
-     let quantity = newCards.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
-    localStorage.setItem("quantity", quantity)
-    const quantityTag = document.querySelector("#quantity")
-     quantityTag.innerText = quantity
- }
+  let quantity = newCards.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
+  localStorage.setItem("quantity", quantity)
+  const quantityTag = document.querySelector("#quantity")
+  quantityTag.innerText = quantity
+}
 
- function clearCart(){
-     let quantityTag = document.querySelector("#quantity")
-    quantityTag.innerText = "0"
-    localStorage.setItem("cart", JSON.stringify([]))
-     getCart([])
-   total([])
- }
+function clearCart() {
+  let quantityTag = document.querySelector("#quantity")
+  quantityTag.innerText = "0"
+  localStorage.setItem("cart", JSON.stringify([]))
+  getCart([])
+  total([])
+}
+
+//CHECKOUT
+function comprar(recurso) {
+  const recurso = {
+    "createdAt": "2024-11-14T21:09:04.357Z",
+    "items": {},
+    "user": "user 1",
+    "id": "1"
+  }
+}
+
+fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
+  method: "POST",
+  body: JSON.stringify(recurso),
+})
+
+  .then(response => response.json())
+  .then(data => {
+    Swal.fire({
+      text: `Gracias${data.user}, hemos registrado tu orden nuúmero ${data.id}`,
+      confirmButtonText: "Si",
+      confirmButtonColor: "#ab2415",
+    })
+    clearCart()
+  })
+  .catch(() => {
+    Swal.fire({
+      text: `Lo sentimos hubo un problema con tu compra, intenta más tarde`,
+      confirmButtonText: "Si",
+      confirmButtonColor: "#ab2415",
+    })
+  })
