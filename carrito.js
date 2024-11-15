@@ -84,14 +84,14 @@ function clearCart() {
 }
 
 //CHECKOUT
-function comprar(recurso) {
+function comprar() {
   const recurso = {
     "createdAt": "2024-11-14T21:09:04.357Z",
-    "items": {},
-    "user": "user 1",
+    "items": JSON.parse(localStorage.getItem("cart")),
+    "user": localStorage.getItem("email"),
     "id": "1"
+
   }
-}
 
 fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
   method: "POST",
@@ -101,9 +101,13 @@ fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
   .then(response => response.json())
   .then(data => {
     Swal.fire({
-      text: `Gracias${data.user}, hemos registrado tu orden nuúmero ${data.id}`,
+
+      text: `Gracias${data.user}, hemos registrado tu orden número ${data.id}`,
       confirmButtonText: "Si",
       confirmButtonColor: "#ab2415",
+      cancelButtonColor: '#24262b',
+      showCancelButton: true,
+    showCloseButton: true,
     })
     clearCart()
   })
@@ -114,3 +118,4 @@ fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
       confirmButtonColor: "#ab2415",
     })
   })
+}
