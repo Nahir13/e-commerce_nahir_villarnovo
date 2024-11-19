@@ -93,29 +93,30 @@ function comprar() {
 
   }
 
-fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
-  method: "POST",
-  body: JSON.stringify(recurso),
-})
-
-  .then(response => response.json())
-  .then(data => {
-    Swal.fire({
-
-      text: `Gracias${data.user}, hemos registrado tu orden número ${data.id}`,
-      confirmButtonText: "Si",
-      confirmButtonColor: "#ab2415",
-      cancelButtonColor: '#24262b',
-      showCancelButton: true,
-    showCloseButton: true,
-    })
-    clearCart()
+  fetch("https://67367b0eaafa2ef222309fad.mockapi.io/cart", {
+    method: "POST",
+    body: JSON.stringify(recurso),
   })
-  .catch(() => {
-    Swal.fire({
-      text: `Lo sentimos hubo un problema con tu compra, intenta más tarde`,
-      confirmButtonText: "Si",
-      confirmButtonColor: "#ab2415",
+
+    .then(response => response.json())
+    .then(data => {
+      Swal.fire({
+
+        text: `Gracias ${recurso.user}, hemos registrado tu orden número ${data.id}`,
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#ab2415",
+        cancelButtonColor: '#24262b',
+        showCancelButton: true,
+        showCloseButton: true,
+      })
+      clearCart()
     })
-  })
+    .catch(() => {
+      Swal.fire({
+        text: `Lo sentimos hubo un problema con tu compra, intenta más tarde`,
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#ab2415",
+      })
+    })
+
 }
