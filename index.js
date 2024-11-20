@@ -4,7 +4,7 @@ const data = [{
   detail:
     "Utiliza una transmisión de carreras de doble embrague para cambios de marcha más rápidos, un sistema de suspensión revisado y slicks de carreras Pirelli",
   img: "https://www.carscoops.com/wp-content/uploads/2020/09/McLaren-Senna-GTR-LM-2.jpg",
-  price: 250_000,
+  price: 1_250_000,
   stock: "Stock: 8",
   category: "mclaren",
 },
@@ -14,7 +14,7 @@ const data = [{
   detail:
     "Es un automóvil superdeportivo híbrido eléctrico enchufable de edición limitada",
   img: "https://cdn.motor1.com/images/mgl/vOwEq/s1/mclaren-p1-2017.jpg",
-  price: 250_000,
+  price: 2_250_000,
   stock: "Stock: 4",
   category: "mclaren",
 },
@@ -24,7 +24,7 @@ const data = [{
   detail:
     "El Senna tiene un diseño de ruedas escalonado, con llantas de 19 pulgadas en la parte delantera y llantas de 20 pulgadas en la parte trasera.",
   img: "https://rmsothebys-cache.azureedge.net/5/6/5/0/6/7/565067a5560e3379aac81c260bdbf9481f9c9e2f.jpg",
-  price: 250_000,
+  price: 4_850_000,
   stock: "Stock: 25",
   category: "mclaren",
 },
@@ -34,7 +34,7 @@ const data = [{
   detail:
     "Mercedes-AMG S con tecnología híbrida EQ | Consumo de energía combinado ponderado: 22,2-22,2 kWh/100 km más 4,6-4,6 l/100 km | Emisiones de CO₂ combinadas ponderadas: 104-104 g/km[3]",
   img: "https://tse2.mm.bing.net/th?id=OIP.EkbnlX_PFLTEfSyeByjP5gHaEK&pid=Api&P=0&h=180",
-  price: 250_000,
+  price: 3_300_000,
   stock: "Stock: 24",
   category: "mercedes",
 },
@@ -44,7 +44,7 @@ const data = [{
   detail:
     "Es un automóvil superdeportivo cupé de dos puertas diédricas estrictamente biplaza,2​ con motor central-trasero montado longitudinalmente y de tracción total, híbrido eléctrico enchufable de producción con tecnología derivada de la Fórmula 1",
   img: "https://cdn.motor1.com/images/mgl/kJGq4/s1/mercedes-amg-one.jpg",
-  price: 250_000,
+  price: 4_400_800,
   stock: "Stock: 18",
   category: "mercedes",
 },
@@ -54,7 +54,7 @@ const data = [{
   detail:
     "Es un automóvil de carreras de Fórmula Uno diseñado y construido por el equipo de Fórmula Uno Mercedes-AMG Petronas que compitió en el Campeonato Mundial de Fórmula Uno de 2023.",
   img: "https://tse4.mm.bing.net/th?id=OIP.r853wTG9ZKwIe9ORTUexRwHaEK&pid=Api&P=0&h=180",
-  price: 250_000,
+  price: 6_600_000,
   stock: "Stock: 1",
   category: "mercedes",
 },
@@ -63,7 +63,7 @@ const data = [{
   title: "Ferrari 488 GTB",
   detail:
     "El nombre 488 GTB marca el retorno a la denominación de los modelos Ferrari clásicos: el 488 indica el cubicaje unitario de cada cilindro, mientras las siglas GTB hacen referencia a Gran Turismo Berlinetta.",
-  img: "https://www.xtrafondos.com/wallpapers/ferrari-488-gtb-1192.jpg",
+  img: "https://www.hdcarwallpapers.com/walls/2015_ferrari_488_gtb-wide.jpg",
   price: 850_000,
   stock: "Stock: 2",
   category: "ferrari",
@@ -75,7 +75,7 @@ const data = [{
     "Es un automóvil superdeportivo de 2 puertas biplaza, con motor central-trasero montado longitudinalmente y tracción trasera",
   img: "http://3.bp.blogspot.com/-3H4SHnnuDNY/UlVkN7fVOaI/AAAAAAAA6_0/qcq1hcwFXgo/s00/Ferrari-458-Italia-mansory-tuning-1920x1080.jpg",
   price: 450_000,
-  stock: "Stock: 10",
+  stock: "Stock: 19",
   category: "ferrari",
 },
 {
@@ -85,7 +85,7 @@ const data = [{
     "Fue un automóvil de carreras de 1,5 litros construido en 1947 por el fabricante de automóviles Ferrari en Módena , Italia. Fue el primer vehículo de la empresa, del que solo se fabricaron dos.",
   img: "https://tse1.mm.bing.net/th?id=OIP.Uxjq5kfyjoBfM9xZBE9T6AHaEK&pid=Api&P=0&h=180",
   price: 950_000,
-  stock: "Stock: 0",
+  stock: "Stock: 10",
   category: "ferrari",
 },];
 
@@ -133,7 +133,7 @@ const resetInput = () => {
 
 
 const filterByCategory = (category) => {
-  const filteredData = category === "todos"?data: data.filter(producto => producto.category === category);
+  const filteredData = category === "todos" ? data : data.filter(producto => producto.category === category);
   filtroCards(filteredData);
 };
 
@@ -143,7 +143,7 @@ buttonReset.addEventListener("click", resetInput);
 const categoryButtons = document.querySelectorAll(".category-btn");
 categoryButtons.forEach(button => {
   button.addEventListener("click", () =>
-  filterByCategory(button.dataset.category));
+    filterByCategory(button.dataset.category));
 });
 //SPINNER
 let cargaCompleta = false;
@@ -155,14 +155,14 @@ spinnerContainer.style.display = 'block';
 
 
 //PROMESAS
-const myPromise = new Promise ((resolve, reject) => {
+const myPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("ok")
-    }, 3000)
-  })
+  }, 3000)
+})
 myPromise.then(() => {
   cargaCompleta = true;
-  spinnerContainer.style.display ='none'
+  spinnerContainer.style.display = 'none'
   filtroCards(data); // Llamamos a filtroCards cuando la promesa se resuelve
 }).catch(error => {
   cargaCompleta = true;

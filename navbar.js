@@ -10,8 +10,8 @@ let menu = [];
 for (let info of barra) {
   const carta = `
     <li class="nav-item hovnav">
-      <a class="nav-link" href="${info.href}">
-      <i class="${info.icon}"></i>
+      <a class="nav-link hovnav" href="${info.href}">
+      <i class="${info.icon} hovnav"></i>
       </a>
     </li>
     
