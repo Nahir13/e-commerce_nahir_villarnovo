@@ -102,7 +102,7 @@ function filtroCards(cards) {
                       <p class="text-center">${producto.detail}</p>
                      <p>${producto.price}</p>
                      <p>${producto.stock}</p>
-                    <a href="productos.html?prod=${producto.id}" class="btn btn-danger hovnav boton">Ver más</a>
+                    <a href="productos.html?prod=${producto.id}"><button type="button"  class="btn btn-danger hovnav boton">Ver más</button></a>
              </div>
         `).join("");
   container.innerHTML = cardHTML;

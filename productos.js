@@ -89,18 +89,17 @@ const data = [{
   category: "ferrari",
 },];
 
-const autos = document.querySelector("main");
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // FUNCIÓN que muestra el DETALLE del producto pedido
 
-function getParamFromURL(param){
+function getParamFromURL(param) {
   const urlParams = new URLSearchParams(window.location.search)
   return urlParams.get(param)
 }
 
 function mostrarDetalleProducto(id) {
-  const producto = data.find(p => (p.id) === id);
+  const producto = data.find(p => p.id === id);
   const productDetail = document.getElementById('product-detail');
   if (producto) {
     productDetail.innerHTML = `
@@ -118,32 +117,37 @@ function mostrarDetalleProducto(id) {
           </div>
         </div>
     ${localStorage.getItem("email") ?
-      `<div class="input-group">
+        `<div class="input-group">
           <button class="btn btn-outline-secondary mr-3" type="button" onclick="increaseItem(${producto.id})">+</button>
           <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
           <button class="btn btn-outline-secondary ml-3" type="button" onclick="decreaseItem(${producto.id})">-</button>
           <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton mx-2" onclick="addItems(${producto.id})">Agregar al Carrito</button></a>
         </div>`
-      :
-      `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
-    } 
+        :
+        `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
+      } 
     </div>
     </div>}`
-      
+
       ;
   } else {
-    filtroCards();  // Se llama a la función mostrarAllProducts
+    productDetail.innerHTML = "<p>Producto no encontrado</p>"
   }
 }
 
+
 const productId = getParamFromURL('prod')
 
-if (productId){
+if (productId) {
   mostrarDetalleProducto(parseInt(productId))
 }
+else {
+  filtroCards(data)
+} 
 
 function filtroCards(cards) {
-const productos = cards.map((producto) =>
+const autos = document.querySelector("main");
+  const productos = cards.map((producto) =>
     `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
       <div class="row g-0">
         <div class="col-md-6">
@@ -169,14 +173,10 @@ const productos = cards.map((producto) =>
     } 
     </div>
     </div>`
-);
-autos.innerHTML = productos.join("");
+  );
+  autos.innerHTML = productos.join("");
 }
-function sprint() {
-  filtroCards(data);
-};
 
-sprint();
 //Funcion para incrementar
 function increaseItem(id) {
   const input = document.getElementById(`cantidad-${id}`);
