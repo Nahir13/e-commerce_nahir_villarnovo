@@ -232,21 +232,112 @@ ul{
   align-items: center;
   z-index: 10000;
 }
-.spinner-border{
-  width: 4rem;
-  height: 4rem;
-  border-width: 0.4rem;
+
+.error-404 {
+  text-align: center;
+  margin-top: 100px;
 }
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg)
+
+.error-404 h1{
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: fadeIn 2s ease-in-out;
+}
+.error-404 p{
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.error-404 .btn{
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+@keyframes spin{
+  0%{
+    transform: rotate(0deg);
   }
   100%{
     transform: rotate(360deg);
   }
 }
-/* #product-detail{
-  padding: 20px;
-  display: block;
-  min-height: 300px;
-} */
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.fondo {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	align-items: center;
+}
+
+.spinner-fondo {
+	--t: 2500ms;
+	--animation: rotate var(--t) linear infinite;
+	--animation2: scale var(--t) linear infinite alternate;
+	width: 20rem;
+	height: 20rem;
+	display: flex;
+  margin: 10px;
+	justify-content: center;
+	align-items: center;
+  text-align: center;
+	animation: var(--animation), var(--animation2);
+}
+
+.spinner-fondo::before,
+.spinner-fondo::after {
+	content: '';
+	position: absolute;
+}
+
+.spinner-fondo::before {
+	inset: 0;
+	border: 3px solid turquoise;
+	border-radius: 50%;
+	mask-image: conic-gradient(transparent 10%, black);
+	animation: borderScale var(--t) linear infinite alternate;
+}
+
+.spinner-fondo::after {
+	--r: 45deg;
+	--scale: 2;
+	width: 20%;
+	height: 20%;
+	background: 
+		radial-gradient(circle at 30% 35%, white 3px, transparent 0),
+		radial-gradient(circle at 70% 35%, white 3px, transparent 0),
+		radial-gradient(circle at top center, white 6px, transparent 0),
+		turquoise;
+	background-position: 0 0, 0 0, 0 1.25rem;
+	top: 0;
+	translate: 0 -50%;
+	rotate: 45deg;
+	animation: var(--animation) reverse, var(--animation2);
+	border-radius: 20%;
+}
+
+@keyframes rotate {
+	to {
+		rotate: calc(360deg + var(--r, 0deg));
+	}
+}
+
+@keyframes scale {
+	to {
+		scale: var(--scale, 0.5);
+	}
+}
+
+@keyframes borderScale {
+	to {
+		border: 6px solid turquoise;
+	}
+}

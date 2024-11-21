@@ -161,7 +161,7 @@ function cargarDatos(){
 const cargarDatosPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("ok")
-  }, 3000)
+  }, 4000)
 })
 cargarDatosPromise.then(() => {
   hideSpinner()
