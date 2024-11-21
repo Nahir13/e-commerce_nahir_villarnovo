@@ -146,25 +146,26 @@ categoryButtons.forEach(button => {
     filterByCategory(button.dataset.category));
 });
 //SPINNER
-let cargaCompleta = false;
+//MOSTRAR
+function showSpinner() {
+  document.getElementById('spinner').style.display = 'flex'
+}
+//OCULTAR
+function hideSpinner() {
+  document.getElementById('spinner').style.display = 'none'
 
-const spinnerContainer = document.getElementById('spinner-container')
-const contenidoContainer = document.getElementById('contenido')
-
-spinnerContainer.style.display = 'block';
-
-
+}
+function cargarDatos(){
+  showSpinner()
 //PROMESAS
-const myPromise = new Promise((resolve, reject) => {
+const cargarDatosPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("ok")
   }, 3000)
 })
-myPromise.then(() => {
-  cargaCompleta = true;
-  spinnerContainer.style.display = 'none'
-  filtroCards(data); // Llamamos a filtroCards cuando la promesa se resuelve
+cargarDatosPromise.then(() => {
+  hideSpinner()
 }).catch(error => {
-  cargaCompleta = true;
-  console.log("Error:", error); // Manejo de errores en caso de que la promesa sea rechazada
+  hideSpinner()
 });
+}
