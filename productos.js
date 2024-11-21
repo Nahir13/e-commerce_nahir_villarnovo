@@ -93,9 +93,15 @@ const autos = document.querySelector("main");
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // FUNCIÓN que muestra el DETALLE del producto pedido
+
+function getParamFromURL(param){
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get(param)
+}
+
 function mostrarDetalleProducto(id) {
-  const producto = data.find(producto => (producto.id) === id);
-  const productDetail = document.querySelector('#product-detail');
+  const producto = data.find(p => (p.id) === id);
+  const productDetail = document.getElementById('product-detail');
   if (producto) {
     productDetail.innerHTML = `
       <div class="card mb-3 text-bg-dark d-flex justify-content-center">
@@ -126,41 +132,16 @@ function mostrarDetalleProducto(id) {
       
       ;
   } else {
-    mostrarAllProducts();  // Se llama a la función mostrarAllProducts
+    filtroCards();  // Se llama a la función mostrarAllProducts
   }
 }
 
-function mostrarAllProducts() {
-  const productDetail = document.querySelector('#product-detail');
-  productDetail.innerHTML = data.map(producto => `
-<div class="card mb-3 text-bg-dark d-flex justify-content-center">
-      <div class="row g-0">
-        <div class="col-md-6">
-          <img class="imagen" src= "${producto.img}" alt="Imagen ${producto.id}" width=100% >
-        </div>
-        <div class="col-md-6 text-center align-items-center">
-          <div class="card-body">
-            <h5 class="card-title">${producto.title}</h5>
-            <p class="card-text">${producto.detail}</p>
-            <p class="card-text">Precio: ${producto.price}</p>
-            <p class="card-text">${producto.stock}</p>
-          </div>
-        </div>
-    ${localStorage.getItem("email") ?
-      `<div class="input-group">
-          <button class="btn btn-outline-secondary mr-3" type="button" onclick="increaseItem(${producto.id})">+</button>
-          <input type="number" id="cantidad-${producto.id}" class="form-control" value="1" min="1" max="${parseInt(producto.stock.split(': ')[1])}" onchange="updateQuantity(${producto.id})"></input>
-          <button class="btn btn-outline-secondary ml-3" type="button" onclick="decreaseItem(${producto.id})">-</button>
-          <a href="#" class="enlace"><button type="button" class="btn btn-danger hovnav boton mx-2" onclick="addItems(${producto.id})">Agregar al Carrito</button></a>
-        </div>`
-      :
-      `<a href="login.html" class="enlace mx-4"><button type="button" class="btn btn-danger hovnav boton mx-4">Iniciar Sesión</a>`
-    } 
-    </div>
-    </div> `).join('');
+const productId = getParamFromURL('prod')
+
+if (productId){
+  mostrarDetalleProducto(parseInt(productId))
 }
 
-/*
 function filtroCards(cards) {
 const productos = cards.map((producto) =>
     `<div class="card mb-3 text-bg-dark d-flex justify-content-center">
@@ -195,7 +176,7 @@ function sprint() {
   filtroCards(data);
 };
 
-sprint();*/
+sprint();
 //Funcion para incrementar
 function increaseItem(id) {
   const input = document.getElementById(`cantidad-${id}`);
