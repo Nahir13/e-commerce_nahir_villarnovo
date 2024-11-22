@@ -1,7 +1,7 @@
 let barra = [
   { text: "Inicio", href: "/index.html" , icon: "fas fa-home"},
   { text: "Productos", href: "/productos.html", icon: "fa-solid fa-car-side"},
-  { text: "Contacto", href: "/contact", icon: "fas fa-phone" },
+  { text: "Contacto", href: "/contact.html", icon: "fas fa-phone" },
 ];
 
 const header = document.querySelector("header");
